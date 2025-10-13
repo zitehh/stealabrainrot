@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Steal A Brainrot</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="loader" class="loader-overlay">
+  <div class="loader-back"></div>
+  <div class="loader-box">
+
+    <div class="loader-sections">
+
+      <!-- LEWY PANEL – LOADER -->
+      <div class="loader-left">
+        <img src="logo.png" alt="logo" class="loader-logo">
+        <div class="loader-title">Ładuje grę Steal A Brainrot</div>
+        <div class="loader-sub">Wczytywanie paczek i modułów...</div>
+
+        <div class="progress-wrap"><div id="progressBar" class="progress-bar"></div></div>
+        <div class="files-line">
+          <div id="fileCount">Pobrano 100/100</div>
+          <div id="percent">100%</div>
+        </div>
+
+        <div class="fake-console" id="fakeConsole">Inicjalizacja modułów zakończona...</div>
+      </div>
+
+      <!-- PRAWE PANEL – AKTUALIZACJE -->
+      <div class="loader-right">
+        <h2 class="rainbow">NOWA AKTUALIZACJA</h2>
+        <div class="update-items">
+          <p>Dodano nowe brainroty</p>
+          <p>Poprawiono stabilność silnika</p>
+          <p>Optymalizacja paczek map</p>
+          <p>Aktualizacja UI i ikon</p>
+          <p>Weryfikacja certyfikatów TLS</p>
+          <p>Nowe efekty wizualne</p>
+          <p>Poprawiono wydajność renderowania</p>
+          <p>Wsparcie dla dodatkowych języków</p>
+          <p>Naprawiono błędy w konsoli</p>
+          <p>Dodano nowe paczki muzyczne</p>
+          <p>Aktualizacja systemu logów</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL INFORMACJI O REGULAMINIE -->
+    <div class="loader-info">
+      Odpalając grę automatycznie akceptujesz politykę prywatności oraz wszelakie regulaminy gry.
+    </div>
+
+  </div>
+</div>
+
+  <!-- Aplikacja -->
+  <div class="wrap" id="app" style="visibility:hidden">
+    <header>
+      <div class="brand">
+        <img src="logo.png" alt="Steal A Brainrot" class="favicon-header">
+        <h1>Steal A Brainrot</h1>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <section class="panel main-panel">
+        <div class="centerCard center-ip">
+          <img src="logo2.png" alt="steal a brainrot" class="centerLogo" />
+          <div class="muted small">Twoje publiczne IP</div>
+          <div id="myIp" class="ipbig center-ip-text">—</div>
+          <div id="myIpInfo" class="muted small">Państwo • Miasto • ISP • Ping • Timezone • UTC • Hostname • ORG • Currency • Continent</div>
+
+          <div class="details-grid" aria-live="polite">
+            <div class="detail"><span class="label">Państwo</span><span id="country">—</span></div>
+            <div class="detail"><span class="label">Miasto</span><span id="city">—</span></div>
+            <div class="detail"><span class="label">ISP</span><span id="isp">—</span></div>
+            <div class="detail"><span class="label">Ping</span><span id="ping">—</span></div>
+            <div class="detail"><span class="label">Timezone</span><span id="timezone">—</span></div>
+            <div class="detail"><span class="label">UTC</span><span id="utc">—</span></div>
+            <div class="detail"><span class="label">Hostname</span><span id="hostname">—</span></div>
+            <div class="detail"><span class="label">ORG</span><span id="org">—</span></div>
+            <div class="detail"><span class="label">Currency</span><span id="currency">—</span></div>
+            <div class="detail"><span class="label">Continent</span><span id="continent">—</span></div>
+          </div>
+        </div>
+
+        <div class="section more" id="detailsSection" style="margin-top:18px;">
+          <div class="muted">Surowe odpowiedzi</div>
+          <pre id="rawResponses" class="raw">—</pre>
+        </div>
+      </section>
+
+      <aside class="panel side-panel">
+        <div class="muted">RAW</div>
+        <pre id="rawSide" class="raw" style="white-space:pre-wrap;word-break:break-word">—</pre>
+      </aside>
+    </main>
+  </div>
+
+  <script src="logika.js"></script>
+</body>
+</html>
