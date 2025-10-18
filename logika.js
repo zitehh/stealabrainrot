@@ -1,4 +1,3 @@
-// script.js
 (function(){
   const $ = id => document.getElementById(id);
 
@@ -27,7 +26,6 @@
     });
   }
 
-  // pobierz IP i wszystkie dane; zaczynamy fetch natychmiast po załadowaniu documentu
   async function fetchAllData(){
     try{
       const ipRes = await fetchJSON('https://api.ipify.org?format=json');
@@ -35,7 +33,6 @@
         return { error: 'Nie udało się pobrać publicznego IP', ipRes };
       }
       const ip = ipRes.ip;
-      // równoległe pobierania szczegółów
       const ipwhoisP = fetchJSON('https://ipwhois.app/json/' + encodeURIComponent(ip));
       const rdapP = fetchJSON('https://rdap.org/ip/' + encodeURIComponent(ip));
       const [ipwhois, rdap, ping] = await Promise.all([ipwhoisP, rdapP, measurePing(ip)]);
@@ -45,7 +42,6 @@
     }
   }
 
-  // aktualizacja UI z obiektu danych
   function showData(obj){
     if(!obj || obj.error){
       $('myIp').textContent = obj && obj.ip ? obj.ip : 'Brak danych';
@@ -69,11 +65,10 @@
     $('rawSide').textContent = $('rawResponses').textContent;
   }
 
-  // fake loader: animacja + jednoczesne rozpoczęcie fetchAllData
   function startFakeLoaderAndFetch(){
     const totalFiles = 100;
     let files = 0;
-    const duration = 900; // min. czas loadera w ms (możesz ustawić krótszy/dłuższy)
+    const duration = 900;
     const interval = 20;
     const steps = Math.ceil(duration / interval);
     const incrFileEvery = Math.max(1, Math.floor(steps / totalFiles));
@@ -96,7 +91,6 @@
       'Finalizacja'
     ];
 
-    // rozpocznij fetch natychmiast
     const fetchPromise = fetchAllData();
 
     let step = 0;
@@ -116,15 +110,15 @@
       }
       if(step >= steps){
         clearInterval(t);
-        // po minimum animacji — czekamy na fetch, ale nie dłużej niż 2s od tego momentu
+
         (async ()=>{
           const race = await Promise.race([
             fetchPromise,
             new Promise(resolve => setTimeout(()=>resolve({ timeout: true }), 2000))
           ]);
-          // jeśli fetchPromise nie zdążył, nadal go poczekamy: await fetchPromise (co chwila uaktualni UI)
+
           const data = (race && race.timeout) ? await fetchPromise : race;
-          // pokaż aplikację i dane
+
           showApp();
           showData(data);
         })();
@@ -139,12 +133,13 @@
     if(loader) loader.style.display = 'none';
   }
 
-  // start loader + fetch natychmiast przy załadowaniu DOM
+
   document.addEventListener('DOMContentLoaded', function(){
-    // pokaz loader (on top) i rusz fetch+animację
+
     const loaderEl = $('loader');
     if(loaderEl) loaderEl.style.display = 'flex';
     startFakeLoaderAndFetch();
   });
 
 })();
+
